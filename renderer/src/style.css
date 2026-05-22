@@ -1,0 +1,2556 @@
+/* CSS Reset and Styling Variables */
+:root {
+  --bg-dark: #000000;
+  --bg-panel: rgba(18, 18, 18, 0.7);
+  --bg-card: rgba(26, 26, 26, 0.5);
+  --border-color: rgba(255, 255, 255, 0.08);
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --accent-color: #ff822d;
+  --accent-glow: rgba(255, 130, 45, 0.35);
+  --accent-gradient: linear-gradient(135deg, #ff9b57 0%, #ff7300 100%);
+  --font-main: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-digital: 'Share Tech Mono', monospace;
+  --titlebar-height: 40px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+body {
+  font-family: var(--font-main);
+  background: transparent;
+  color: var(--text-primary);
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Custom Titlebar Setup */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  background: var(--bg-dark);
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+}
+
+.titlebar {
+  height: var(--titlebar-height);
+  background: rgba(12, 12, 14, 0.95);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0 0 16px;
+  border-bottom: 1px solid var(--border-color);
+  -webkit-app-region: drag;
+  z-index: 1000;
+}
+
+.titlebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--text-primary);
+}
+
+.titlebar-logo-icon {
+  width: 16px;
+  height: 16px;
+  background: var(--accent-gradient);
+  border-radius: 4px;
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.titlebar-drag-spacer {
+  flex-grow: 1;
+  height: 100%;
+}
+
+.titlebar-controls {
+  display: flex;
+  align-items: center;
+  -webkit-app-region: no-drag;
+}
+
+.control-btn {
+  width: 44px;
+  height: var(--titlebar-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: all 0.2s ease;
+}
+
+.control-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+}
+
+.control-btn.close:hover {
+  background: #e81123;
+  color: #ffffff;
+}
+
+/* Dashboard View */
+.dashboard-content {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+  background: radial-gradient(circle at top center, rgba(255, 102, 0, 0.08) 0%, rgba(12, 12, 14, 0) 70%), var(--bg-dark);
+}
+
+.dashboard-hero {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.dashboard-title {
+  font-size: 32px;
+  font-weight: 800;
+  background: linear-gradient(180deg, #ffffff 0%, #a8a8b3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 8px;
+}
+
+.dashboard-subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.widgets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.widget-preview-card {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+}
+
+.widget-preview-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 102, 0, 0.3);
+  box-shadow: 0 10px 30px rgba(255, 102, 0, 0.08);
+}
+
+.widget-preview-container {
+  width: 168px;
+  height: 196px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: visible;
+}
+
+.widget-info {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.widget-name {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--text-primary);
+}
+
+.widget-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.add-widget-btn {
+  width: 100%;
+  padding: 12px 20px;
+  background: var(--accent-gradient);
+  border: none;
+  border-radius: 12px;
+  color: #ffffff;
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 15px rgba(255, 102, 0, 0.3);
+}
+
+.add-widget-btn:hover {
+  box-shadow: 0 6px 20px rgba(255, 102, 0, 0.5);
+  transform: scale(1.02);
+}
+
+.add-widget-btn:active {
+  transform: scale(0.98);
+}
+
+/* ========================================= */
+/*   HOROLIZE WIDGET VIEW (DESKTOP MODE)    */
+/* ========================================= */
+
+.widget-window-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  padding: 10px;
+}
+
+.horolize-widget-body {
+  width: 240px;
+  height: 280px;
+  background: var(--accent-gradient);
+  border-radius: 36px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  /* Flat border, no shadows */
+  box-shadow: none;
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  cursor: grab;
+  /* Make the card itself draggable */
+  -webkit-app-region: drag;
+  transition: box-shadow 0.3s ease;
+}
+
+.horolize-widget-body:active {
+  cursor: grabbing;
+}
+
+/* Clock Recessed Screen Display */
+.clock-recessed-display {
+  width: 100%;
+  height: 130px;
+  background: #121212;
+  border-radius: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  box-shadow: none;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+
+/* Flip Digit Cards */
+.flip-card-container {
+  position: relative;
+  width: 84px;
+  height: 110px;
+  background: #1d1d1f;
+  border-radius: 12px;
+  box-shadow: none;
+  perspective: 400px;
+}
+
+.flip-card-half {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+  background: #1d1d1f;
+  display: flex;
+  justify-content: center;
+  backface-visibility: hidden;
+}
+
+.flip-card-half span {
+  font-family: var(--font-main);
+  font-size: 68px;
+  font-weight: 800;
+  color: #e3e3e6;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  line-height: 110px;
+  /* Aligns characters vertically */
+}
+
+.flip-card-half.top {
+  top: 0;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.flip-card-half.top span {
+  top: 0;
+}
+
+.flip-card-half.bottom {
+  bottom: 0;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: flex-end;
+}
+
+.flip-card-half.bottom span {
+  bottom: 0;
+}
+
+/* Divider Line across the flip cards */
+.flip-card-divider {
+  position: absolute;
+  top: calc(50% - 1px);
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 10;
+  box-shadow: 0 1px 1px rgba(255, 255, 255, 0.07);
+}
+
+/* Notches for hinges */
+.flip-card-divider::before,
+.flip-card-divider::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  width: 4px;
+  height: 10px;
+  background: #121212;
+  border-radius: 2px;
+}
+
+.flip-card-divider::before {
+  left: -2px;
+}
+
+.flip-card-divider::after {
+  right: -2px;
+}
+
+/* Flip Animations classes */
+.flip-card-half.top.flip-animate {
+  transform-origin: bottom center;
+  animation: flipTop 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.flip-card-half.bottom.flip-animate {
+  transform-origin: top center;
+  animation: flipBottom 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes flipTop {
+  0% {
+    transform: rotateX(0deg);
+  }
+
+  100% {
+    transform: rotateX(-90deg);
+  }
+}
+
+@keyframes flipBottom {
+  0% {
+    transform: rotateX(90deg);
+  }
+
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+/* Bottom Controls Section of Widget */
+.widget-bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  padding: 0 4px;
+}
+
+/* Speaker Grill component */
+.speaker-grill-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  -webkit-app-region: no-drag;
+}
+
+.speaker-icon-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.speaker-icon-btn:hover {
+  color: rgba(0, 0, 0, 0.95);
+  transform: scale(1.1);
+}
+
+.speaker-icon-btn.muted {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.speaker-grill {
+  display: grid;
+  grid-template-columns: repeat(8, 4px);
+  gap: 4px;
+}
+
+.speaker-hole {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.65);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15);
+}
+
+/* AM/PM indicator - Skeuomorphic Toggle Slot */
+.ampm-indicator {
+  display: inline-flex;
+  background: linear-gradient(to bottom, #0d0d0f, #1b1b22);
+  border-radius: 12px;
+  padding: 3px;
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.55);
+  box-shadow: none;
+  -webkit-app-region: no-drag;
+}
+
+.ampm-track {
+  display: flex;
+  position: relative;
+  gap: 3px;
+  align-items: center;
+}
+
+.ampm-label {
+  position: relative;
+  width: 32px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.35);
+  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.7);
+  z-index: 2;
+  transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1), font-weight 0.3s ease;
+}
+
+.ampm-label.active {
+  color: #1e2025;
+  font-weight: 800;
+  text-shadow: none;
+}
+
+/* Metallic Mechanical Toggle Knob */
+.ampm-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 22px;
+  background: linear-gradient(135deg, #ffffff 0%, #eceef3 45%, #c8cbd6 100%);
+  border-radius: 8px;
+  box-shadow: none;
+  z-index: 1;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Vertical Tactile Grip Ridges */
+.ampm-slider::after {
+  content: '';
+  position: absolute;
+  top: 20%;
+  left: calc(50% - 1px);
+  width: 2px;
+  height: 60%;
+  background: rgba(0, 0, 0, 0.3);
+  border-right: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 1px;
+}
+
+.ampm-slider.am {
+  transform: translateX(0);
+}
+
+.ampm-slider.pm {
+  transform: translateX(35px);
+  /* width 32px + gap 3px */
+}
+
+/* Floating overlay controls for Widget (fade in on hover) */
+.widget-overlay-controls {
+  position: absolute;
+  top: 10px;
+  right: 18px;
+  display: flex;
+  gap: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateY(-5px);
+  z-index: 100;
+  -webkit-app-region: no-drag;
+}
+
+.horolize-widget-body:hover .widget-overlay-controls {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.overlay-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: none;
+}
+
+.overlay-btn:hover {
+  background: rgba(0, 0, 0, 0.7);
+  color: #ffffff;
+  transform: scale(1.08);
+}
+
+.overlay-btn.close-widget:hover {
+  background: #e81123;
+}
+
+.overlay-btn.pinned {
+  background: var(--accent-color);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Drag indicator tip at the bottom */
+.drag-indicator-text {
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 9px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.horolize-widget-body:hover .drag-indicator-text,
+.bloom-widget-body:hover .drag-indicator-text {
+  opacity: 1;
+}
+
+/* ========================================= */
+/*     BLOOM WIDGET VIEW (ANALOG CLOCK)     */
+/* ========================================= */
+
+.bloom-widget-body {
+  width: 240px;
+  height: 240px;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: grab;
+  -webkit-app-region: drag;
+}
+
+.bloom-widget-body:active {
+  cursor: grabbing;
+}
+
+/* Scallop shape container using SVG background */
+.scallop-face {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  filter: none;
+}
+
+/* Hands and rotation setup */
+.clock-hands-container {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  top: 0;
+  left: 0;
+  z-index: 12;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hand {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform-origin: bottom center;
+}
+
+.hand.hour {
+  width: 12px;
+  height: 52px;
+  background: var(--bloom-hand-color, #ffffff);
+  border-radius: 6px;
+  left: calc(50% - 6px);
+  transform-origin: center 46px;
+  /* overlapping center */
+  bottom: calc(50% - 6px);
+  /* box-shadow: none; */
+}
+
+.hand.minute {
+  width: 12px;
+  height: 76px;
+  border: 2.5px solid var(--bloom-hand-color, #ffffff);
+  background: transparent;
+  border-radius: 6px;
+  left: calc(50% - 6px);
+  transform-origin: center 70px;
+  /* overlapping center */
+  bottom: calc(50% - 6px);
+  /* box-shadow: none; */
+}
+
+.second-dot-container {
+  position: absolute;
+  width: 2px;
+  height: 72px;
+  /* Radius distance to the dot */
+  left: calc(50% - 1px);
+  bottom: 50%;
+  transform-origin: bottom center;
+  z-index: 15;
+}
+
+.second-dot {
+  width: 12px;
+  height: 12px;
+  background: #ff1a3c;
+  /* vibrant red */
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: calc(50% - 6px);
+  box-shadow: none;
+}
+
+/* Center pivot cap */
+.center-pivot-cap {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: var(--bloom-pivot-bg, #121214);
+  border: 2px solid var(--bloom-hand-color, #ffffff);
+  border-radius: 50%;
+  z-index: 20;
+}
+
+/* Hover overlay controls specifically for Bloom's circular face */
+.scallop-face .widget-overlay-controls {
+  right: auto;
+  left: 50%;
+  top: 22px;
+  transform: translate(-50%, -5px);
+}
+
+.scallop-face:hover .widget-overlay-controls {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 0);
+}
+
+/* Bloom Light Theme styling */
+.bloom-widget-body.light-theme {
+  --bloom-hand-color: #1e1e24;
+  --bloom-pivot-bg: #f0efe9;
+}
+
+.bloom-widget-body.light-theme .overlay-btn {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.75);
+}
+
+.bloom-widget-body.light-theme .overlay-btn:hover {
+  background: rgba(255, 255, 255, 0.85);
+  color: #000000;
+}
+
+.bloom-widget-body.light-theme .overlay-btn.pinned {
+  background: #1e1e24;
+  color: #ffffff;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.bloom-widget-body.light-theme .drag-indicator-text {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.bloom-widget-body .drag-indicator-text {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* Horolize Dark Theme styling */
+.horolize-widget-body.dark-theme {
+  background: linear-gradient(135deg, #2d2d30 0%, #111112 100%);
+  box-shadow:
+    inset 0 4px 6px rgba(255, 255, 255, 0.08),
+    inset 0 -6px 12px rgba(0, 0, 0, 0.5);
+  border: 1.5px solid rgba(255, 255, 255, 0.05);
+}
+
+.horolize-widget-body.dark-theme .overlay-btn {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.horolize-widget-body.dark-theme .overlay-btn:hover {
+  background: rgba(0, 0, 0, 0.75);
+  color: #ffffff;
+}
+
+.horolize-widget-body.dark-theme .speaker-icon-btn {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.horolize-widget-body.dark-theme .speaker-icon-btn:hover {
+  color: #ff6600;
+}
+
+.horolize-widget-body.dark-theme .speaker-icon-btn.muted {
+  color: rgba(255, 255, 255, 0.15);
+}
+
+.horolize-widget-body.dark-theme .speaker-hole {
+  background: rgba(0, 0, 0, 0.85);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05);
+}
+
+.horolize-widget-body.dark-theme .ampm-indicator {
+  background: linear-gradient(to bottom, #060608, #111114);
+  border: 1px solid rgba(0, 0, 0, 0.7);
+  box-shadow:
+    inset 0 3px 6px rgba(0, 0, 0, 0.9),
+    0 1px 1px rgba(255, 255, 255, 0.05);
+}
+
+.horolize-widget-body.dark-theme .ampm-label {
+  color: rgba(255, 255, 255, 0.25);
+  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.9);
+}
+
+.horolize-widget-body.dark-theme .ampm-label.active {
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.horolize-widget-body.dark-theme .ampm-slider {
+  background: linear-gradient(135deg, #ff8c21 0%, #ff5e00 45%, #b23b00 100%);
+  box-shadow:
+    0 3px 6px rgba(0, 0, 0, 0.5),
+    inset 0 1px 1px rgba(255, 255, 255, 0.4),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.3),
+    0 0 12px rgba(255, 94, 0, 0.25);
+  border: 0.5px solid rgba(0, 0, 0, 0.15);
+}
+
+.horolize-widget-body.dark-theme .drag-indicator-text {
+  color: rgba(255, 255, 255, 0.15);
+}
+
+/* ========================================= */
+/*       AIRBUDS BLUETOOTH WIDGET VIEW      */
+/* ========================================= */
+
+.buds-widget-body {
+  width: 280px;
+  height: 340px;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: grab;
+  -webkit-app-region: drag;
+}
+
+.buds-widget-body:active {
+  cursor: grabbing;
+}
+
+/*.buds-face styling */
+.buds-face {
+  position: relative;
+  width: 260px;
+  height: 290px;
+  border-radius: 52px;
+  /* Squircle (iOS rounded square style) */
+  background: radial-gradient(circle at 30% 30%, #ffffff 0%, #f7f9fc 100%);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 24px 20px 20px 20px;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 10;
+}
+
+.buds-face::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  transition: background 0.5s ease;
+  z-index: 1;
+}
+
+/* Hover controls inside buds-face */
+.buds-face .widget-overlay-controls {
+  right: auto;
+  left: 50%;
+  top: 24px;
+  transform: translate(-50%, -5px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 100;
+  display: flex;
+  gap: 6px;
+  -webkit-app-region: no-drag;
+}
+
+.buds-face:hover .widget-overlay-controls {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 0);
+}
+
+/* Buds Panels */
+.buds-top-pane {
+  width: 100%;
+  height: 170px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.buds-bottom-pane {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 8px;
+  z-index: 2;
+}
+
+/* Dedicated Media Player styles will be defined separately below */
+
+.buds-media-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2;
+}
+
+.buds-media-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  -webkit-app-region: no-drag;
+}
+
+.media-source-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1db954;
+  /* spotify green default */
+  width: 20px;
+  height: 20px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
+}
+
+.media-device-pill {
+  background: rgba(204, 235, 255, 0.22);
+  color: #ccebff;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid rgba(204, 235, 255, 0.12);
+  max-width: 165px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  /* backdrop-filter: none; flat design */
+}
+
+.buds-media-middle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.media-track-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  min-width: 0;
+  margin-right: 12px;
+}
+
+.media-track-title {
+  font-family: var(--font-main);
+  font-size: 17px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+  text-align: left;
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.media-track-artist {
+  font-family: var(--font-main);
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 2px 0 0 0;
+  text-align: left;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.media-play-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: #ccebff;
+  color: #121214;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: none;
+  -webkit-app-region: no-drag;
+}
+
+.media-play-btn:hover {
+  transform: scale(1.05);
+  background: #ffffff;
+}
+
+.media-play-btn:active {
+  transform: scale(0.95);
+}
+
+.buds-media-bottom {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 12px;
+  -webkit-app-region: no-drag;
+}
+
+.media-icon-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.65);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.media-icon-btn:hover {
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+.media-icon-btn:active {
+  transform: scale(0.9);
+}
+
+.media-icon-btn.add-btn svg {
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), fill 0.2s ease, stroke 0.2s ease;
+}
+
+.media-icon-btn.add-btn.active {
+  color: #ff3b30;
+  /* vibrant iOS red */
+  filter: drop-shadow(0 0 6px rgba(255, 59, 48, 0.45));
+}
+
+.media-icon-btn.add-btn.active svg {
+  animation: heartPulse 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes heartPulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.35);
+  }
+
+  100% {
+    transform: scale(1.15);
+  }
+}
+
+.media-icon-btn.repeat-btn.active {
+  color: #30b0ff;
+  /* active blue */
+  filter: drop-shadow(0 0 6px rgba(48, 176, 255, 0.45));
+}
+
+.media-icon-btn.cast-btn.active {
+  color: #007aff;
+  /* active blue */
+  filter: drop-shadow(0 0 6px rgba(0, 122, 255, 0.45));
+}
+
+.media-timeline-container {
+  flex-grow: 1;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.media-timeline-container circle {
+  opacity: 0;
+  transition: opacity 0.2s ease, r 0.2s ease, fill 0.2s ease;
+}
+
+.media-timeline-container:hover circle,
+.media-widget-body.no-drag-active circle {
+  opacity: 1;
+}
+
+.media-timeline-container:hover line {
+  stroke: rgba(255, 255, 255, 0.4);
+}
+
+.media-timeline-svg {
+  width: 100%;
+  height: 12px;
+  overflow: hidden;
+}
+
+.media-timeline-wave {
+  stroke-dasharray: none;
+  animation: waveFlow 1.6s linear infinite;
+  transform-origin: left center;
+}
+
+.media-timeline-wave.paused {
+  animation-play-state: paused;
+}
+
+@keyframes waveFlow {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(-7.14%, 0, 0);
+    /* 10 units wavelength out of 140 total width */
+  }
+}
+
+/* Headphones SVG and animation */
+.headphones-svg,
+.headphones-img {
+  display: block;
+  overflow: visible;
+  filter: none;
+  transition: filter 0.35s ease, transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-origin: center bottom;
+  -webkit-app-region: no-drag;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.buds-face:hover .headphones-svg,
+.buds-face:hover .headphones-img {
+  filter: none;
+  transform: scale(1.06) translateY(-4px);
+}
+
+/* Status Label */
+.buds-status-label {
+  font-family: var(--font-main);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+  text-align: center;
+  transition: color 0.3s ease;
+}
+
+.buds-status-label.connected {
+  color: #34c759;
+  /* vibrant green */
+}
+
+/* Status Indicator Dots */
+.buds-status-dots {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.status-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.status-dot.connected {
+  background: #007aff;
+  box-shadow: 0 0 8px rgba(0, 122, 255, 0.5);
+  animation: statusPulse 1.4s infinite ease-in-out;
+}
+
+.status-dot.connected:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.status-dot.connected:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.status-dot.connected:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes statusPulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+
+  50% {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+}
+
+/* Device Name */
+.buds-device-name {
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 700;
+  color: #1e1e24;
+  line-height: 1.35;
+  max-width: 220px;
+  text-align: center;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+  transition: color 0.3s ease;
+}
+
+.buds-device-name.disconnected {
+  color: #8e8e93;
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  margin-bottom: 10px;
+  position: relative;
+  -webkit-app-region: drag;
+}
+
+/* Custom Wh. Logo */
+.wh-logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background-color: transparent;
+  position: relative;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 26px;
+  color: #ffffff;
+  overflow: visible;
+}
+
+.wh-logo-pill {
+  position: absolute;
+  width: 14px;
+  height: 28px;
+  background-color: var(--accent-color);
+  border-radius: 10px;
+  left: 11px; /* Positions behind the right V of the W */
+  z-index: 0;
+}
+
+.wh-logo-text {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: baseline;
+  letter-spacing: -1px;
+  line-height: 1;
+  padding-left: 2px;
+}
+
+.wh-logo-dot {
+  color: var(--accent-color);
+}
+
+/* Battery status styling */
+.buds-battery-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 6px;
+  animation: batteryFadeIn 0.3s ease-in-out;
+}
+
+.battery-icon {
+  color: #8e8e9f;
+  display: block;
+}
+
+.battery-text {
+  font-family: var(--font-main);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+@keyframes batteryFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Drag indicator tip at the bottom */
+.buds-widget-body .drag-indicator-text {
+  position: absolute;
+  bottom: 16px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 8px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.buds-widget-body:hover .drag-indicator-text {
+  opacity: 1;
+}
+
+/* ========================================= */
+/*         AIRBUDS THEME VARIATIONS         */
+/* ========================================= */
+
+/* Light Theme (Default) Controls */
+.buds-widget-body:not(.dark-theme) .overlay-btn {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.75);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.buds-widget-body:not(.dark-theme) .overlay-btn:hover {
+  background: rgba(255, 255, 255, 0.95);
+  color: #000000;
+}
+
+.buds-widget-body:not(.dark-theme) .overlay-btn.pinned {
+  background: #1e1e24;
+  color: #ffffff;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Dark Theme Variations */
+.buds-widget-body.dark-theme .buds-face {
+  background: radial-gradient(circle at 30% 30%, #1e1e22 0%, #121215 100%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.45),
+    inset 0 2px 4px rgba(255, 255, 255, 0.05),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.buds-widget-body.dark-theme .buds-status-label {
+  color: #8e8e9f;
+}
+
+.buds-widget-body.dark-theme .buds-status-label.connected {
+  color: #30d158;
+  /* iOS dark theme green */
+}
+
+.buds-widget-body.dark-theme .buds-device-name.disconnected {
+  color: #636366;
+}
+
+.buds-widget-body.dark-theme .buds-device-name {
+  color: #ffffff;
+}
+
+.buds-widget-body.dark-theme .status-dot {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.buds-widget-body.dark-theme .status-dot.connected {
+  background: #007aff;
+  box-shadow: 0 0 8px rgba(0, 122, 255, 0.5);
+}
+
+.buds-widget-body.dark-theme .overlay-btn {
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.buds-widget-body.dark-theme .overlay-btn:hover {
+  background: rgba(0, 0, 0, 0.8);
+  color: #ffffff;
+}
+
+.buds-widget-body.dark-theme .overlay-btn.pinned {
+  background: #ffffff;
+  color: #121214;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.buds-widget-body.dark-theme .drag-indicator-text {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+/* Connected Pulsing Glow Ring behind Headphones */
+.buds-glow-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 180px;
+  height: 180px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(52, 199, 89, 0.25) 0%, rgba(52, 199, 89, 0) 70%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.buds-glow-ring.connected {
+  opacity: 1;
+  animation: budsGlowPulse 3s infinite ease-in-out;
+}
+
+@keyframes budsGlowPulse {
+
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(0.85);
+    opacity: 0.45;
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.12);
+    opacity: 0.9;
+  }
+}
+
+/* ========================================= */
+/*      STANDALONE MEDIA PLAYER WIDGET       */
+/* ========================================= */
+
+.media-widget-body {
+  width: 360px;
+  height: 240px;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: grab;
+  -webkit-app-region: drag;
+  transition: cursor 0.2s ease;
+}
+
+.media-widget-body:active {
+  cursor: grabbing;
+}
+
+.media-widget-body.no-drag-active {
+  -webkit-app-region: no-drag !important;
+  cursor: grabbing !important;
+}
+
+.media-widget-body.no-drag-active * {
+  -webkit-app-region: no-drag !important;
+}
+
+.media-face {
+  position: relative;
+  width: 340px;
+  height: 190px;
+  border-radius: 40px;
+  /* squircle landscape shape */
+  background: #18181b;
+  background-size: cover;
+  background-position: center;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px 20px;
+  overflow: hidden;
+  z-index: 10;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.media-face::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  transition: background 0.5s ease;
+  z-index: 1;
+}
+
+.media-face.has-thumbnail::before {
+  background: linear-gradient(to bottom, rgba(12, 12, 14, 0.45) 0%, rgba(12, 12, 14, 0.75) 100%);
+}
+
+/* Hover controls inside media-face */
+.media-face .widget-overlay-controls {
+  right: auto;
+  left: 50%;
+  top: 16px;
+  transform: translate(-50%, -5px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 100;
+  display: flex;
+  gap: 6px;
+  -webkit-app-region: no-drag;
+}
+
+.media-face:hover .widget-overlay-controls {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 0);
+}
+
+.media-widget-body .drag-indicator-text {
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 8px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.media-widget-body:hover .drag-indicator-text {
+  opacity: 1;
+}
+
+/* Fallback state when there is no media */
+.media-fallback-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #ffffff;
+  position: relative;
+  z-index: 2;
+}
+
+.media-fallback-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(204, 235, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ccebff;
+  box-shadow: none;
+  animation: floatPulse 4s ease-in-out infinite;
+}
+
+.media-fallback-text {
+  font-size: 13px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  margin-top: 4px;
+}
+
+.media-fallback-subtext {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.4);
+  text-align: center;
+  max-width: 220px;
+}
+
+@keyframes floatPulse {
+
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  50% {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 8px 18px rgba(204, 235, 255, 0.1);
+  }
+}
+
+/* ========================================= */
+/*         ATMOSPHERE WEATHER WIDGET        */
+/* ========================================= */
+
+.weather-widget-body {
+  width: 220px;
+  height: 220px;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: grab;
+  -webkit-app-region: drag;
+}
+
+.weather-widget-body:active {
+  cursor: grabbing;
+}
+
+.weather-face {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 48px;
+  background: #18181b;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 18px 20px 18px;
+  overflow: hidden;
+  z-index: 10;
+  transition: transform 0.2s ease;
+}
+
+/* Overlay controls — centered at top, fade in on hover */
+.weather-face .widget-overlay-controls {
+  left: 50%;
+  right: auto;
+  top: 16px;
+  transform: translate(-50%, -5px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 100;
+  display: flex;
+  gap: 6px;
+  -webkit-app-region: no-drag;
+}
+
+.weather-face:hover .widget-overlay-controls {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 0);
+}
+
+/* Icon dot-matrix display area */
+.weather-icon-area {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding-top: 8px;
+}
+
+/* Bottom temperature + condition block */
+.weather-bottom-area {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.weather-temp-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  line-height: 1;
+}
+
+.weather-temp {
+  font-family: var(--font-main);
+  font-size: 54px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -3px;
+  line-height: 1;
+}
+
+.weather-temp-deg {
+  font-family: var(--font-main);
+  font-size: 20px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 7px;
+  margin-left: 3px;
+}
+
+.weather-condition {
+  font-family: var(--font-main);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  text-align: center;
+  margin-top: 1px;
+}
+
+.weather-location {
+  font-family: var(--font-main);
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.25);
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 160px;
+  margin-top: 2px;
+}
+
+/* Permission / Loading / Error states */
+.weather-state-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 12px;
+  padding: 16px;
+  text-align: center;
+}
+
+.weather-state-label {
+  font-family: var(--font-main);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+  line-height: 1.6;
+}
+
+/* Animated loading dots */
+.weather-loading-dots {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  align-items: center;
+}
+
+.weather-loading-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--weather-text-color, #ffffff);
+  opacity: 0.35;
+  animation: wdotPulse 1.2s ease-in-out infinite;
+}
+
+.weather-loading-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.weather-loading-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes wdotPulse {
+
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(0.85);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+/* Drag hint text */
+.weather-widget-body .drag-indicator-text {
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 8px;
+  font-weight: 600;
+  color: var(--weather-drag-color, rgba(255, 255, 255, 0.2));
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.weather-widget-body:hover .drag-indicator-text {
+  opacity: 1;
+}
+
+/* ========================================= */
+/*       WEATHER WIDGET LIGHT THEME         */
+/* ========================================= */
+
+.weather-widget-body {
+  --weather-dot-active: #ffffff;
+  --weather-dot-inactive: rgba(255, 255, 255, 0.055);
+  --weather-text-color: #ffffff;
+  --weather-bg: #18181b;
+  --weather-border: rgba(255, 255, 255, 0.05);
+  --weather-text-muted: rgba(255, 255, 255, 0.45);
+  --weather-text-dim: rgba(255, 255, 255, 0.25);
+  --weather-drag-color: rgba(255, 255, 255, 0.2);
+}
+
+.weather-widget-body.light-theme {
+  --weather-dot-active: #18181b;
+  --weather-dot-inactive: rgba(0, 0, 0, 0.06);
+  --weather-text-color: #18181b;
+  --weather-bg: #eaedea;
+  /* Slightly off-white matching reference */
+  --weather-border: rgba(0, 0, 0, 0.05);
+  --weather-text-muted: rgba(0, 0, 0, 0.55);
+  --weather-text-dim: rgba(0, 0, 0, 0.35);
+  --weather-drag-color: rgba(0, 0, 0, 0.25);
+}
+
+.weather-face {
+  background: var(--weather-bg);
+  border-color: var(--weather-border);
+}
+
+.weather-temp {
+  color: var(--weather-text-color);
+}
+
+.weather-temp-deg {
+  color: var(--weather-text-muted);
+}
+
+.weather-condition {
+  color: var(--weather-text-muted);
+}
+
+.weather-location {
+  color: var(--weather-text-dim);
+}
+
+.weather-state-label {
+  color: var(--weather-text-muted);
+}
+
+.weather-widget-body.light-theme .overlay-btn {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.75);
+}
+
+.weather-widget-body.light-theme .overlay-btn:hover {
+  background: rgba(255, 255, 255, 0.95);
+  color: #000000;
+}
+
+.weather-widget-body.light-theme .overlay-btn.pinned {
+  background: #18181b;
+  color: #ffffff;
+}
+
+/* ========================================= */
+/*         DATE / CALENDAR WIDGET           */
+/* ========================================= */
+
+.calendar-widget-body {
+  --calendar-bg: #f7f7f7;
+  --calendar-text-color: #1a1a1a;
+
+  width: 240px;
+  height: 240px;
+  background: var(--calendar-bg);
+  border-radius: 40px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-shadow: none;
+  /* Removed as requested previously */
+  cursor: grab;
+  -webkit-app-region: drag;
+  overflow: hidden;
+}
+
+.calendar-widget-body.dark-theme {
+  --calendar-bg: #18181b;
+  --calendar-text-color: #ffffff;
+}
+
+.calendar-widget-body:active {
+  cursor: grabbing;
+}
+
+.calendar-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 22px 24px 0 24px;
+  width: 100%;
+}
+
+.calendar-time-block {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.calendar-alarm-icon {
+  margin-top: 1px;
+}
+
+.calendar-time {
+  font-family: Georgia, serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--calendar-text-color);
+  letter-spacing: 0.5px;
+}
+
+.calendar-weather-block {
+  display: flex;
+  justify-content: flex-end;
+  /* Icon size is handled directly in JS SVG */
+}
+
+.calendar-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.calendar-date-text {
+  font-family: Georgia, serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--calendar-text-color);
+  margin-top: 14px;
+}
+
+/* Override overlay controls for light calendar */
+.calendar-widget-body .widget-overlay-controls {
+  left: 50%;
+  right: auto;
+  transform: translate(-50%, -5px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 100;
+  display: flex;
+  gap: 6px;
+  -webkit-app-region: no-drag;
+}
+
+.calendar-widget-body:hover .widget-overlay-controls {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 0);
+}
+
+.calendar-widget-body .overlay-btn {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #1a1a1a;
+}
+
+.calendar-widget-body .overlay-btn:hover {
+  background: #ffffff;
+  color: #000000;
+}
+
+.calendar-widget-body .overlay-btn.pinned {
+  background: #d9281c;
+  color: #ffffff;
+  border-color: #d9281c;
+}
+
+/* ========================================= */
+/*         SPOTIFY DEDICATED WIDGET         */
+/* ========================================= */
+
+.spotify-widget-body {
+  width: 380px;
+  height: 200px;
+  background: #18181b;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  cursor: grab;
+  -webkit-app-region: drag;
+  padding: 16px 20px;
+}
+
+.spotify-widget-body:active {
+  cursor: grabbing;
+}
+
+/* Top Logo Row */
+.spotify-app-logo-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 16px;
+  color: #ffffff;
+}
+
+.spotify-app-name {
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+
+.spotify-content-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 1;
+  -webkit-app-region: no-drag;
+}
+
+.spotify-large-art {
+  width: 100px;
+  height: 100px;
+  border-radius: 8px;
+  object-fit: cover;
+  background: #282828;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.spotify-track-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+
+.spotify-large-title {
+  color: #ffffff;
+  font-family: var(--font-main);
+  font-size: 26px;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 2px;
+}
+
+.spotify-large-artist {
+  color: #b3b3b3;
+  font-family: var(--font-main);
+  font-size: 16px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 20px;
+}
+
+/* Progress Area */
+.spotify-progress-container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.spotify-time-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #b3b3b3;
+  font-family: var(--font-main);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.spotify-progress-bar-large {
+  width: 100%;
+  height: 6px;
+  background: #3e3e42;
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+}
+
+.spotify-progress-fill-large {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: #1ed760;
+  border-radius: 3px;
+  pointer-events: none;
+}
+
+/* Hover overlay for pinning */
+.spotify-widget-body .widget-overlay-controls {
+  left: auto;
+  right: 14px;
+  top: 14px;
+  transform: translateY(-5px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 100;
+  display: flex;
+  gap: 6px;
+  -webkit-app-region: no-drag;
+}
+
+.spotify-widget-body:hover .widget-overlay-controls {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* ========================================= */
+/*             BATTERY WIDGETS              */
+/* ========================================= */
+
+.battery-widget-body {
+  background: #121214;
+  padding: 20px;
+  position: relative;
+  cursor: grab;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-app-region: drag;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.battery-widget-body.circle {
+  border-radius: 50%;
+}
+
+.battery-widget-body.square {
+  border-radius: 20px;
+}
+
+.battery-widget-body .widget-overlay-controls.center-top {
+  left: 50%;
+  right: auto;
+  top: 14px;
+  transform: translate(-50%, -10px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 100;
+  display: flex;
+  gap: 6px;
+  -webkit-app-region: no-drag;
+}
+
+.battery-widget-body:hover .widget-overlay-controls.center-top {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 0);
+}
+
+/* Album Art & Hover Controls */
+.spotify-art-container {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.spotify-art-container .spotify-large-art {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #282828;
+  display: block;
+}
+
+.spotify-hover-controls {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 10;
+}
+
+.spotify-art-container:hover .spotify-hover-controls {
+  opacity: 1;
+}
+
+.spotify-ctrl-btn {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.1s ease;
+}
+
+.spotify-ctrl-btn:hover {
+  transform: scale(1.1);
+}
+
+.spotify-ctrl-btn:active {
+  transform: scale(0.9);
+}
+
+.spotify-play-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #1ed760;
+  color: #000000;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.1s ease, background 0.1s ease;
+}
+
+.spotify-play-btn:hover {
+  transform: scale(1.05);
+  background: #1fdf64;
+}
+
+.spotify-play-btn:active {
+  transform: scale(0.95);
+}
+
+.spotify-play-btn svg {
+  fill: #000000;
+}
+
+/* ========================================= */
+/*             MARQUEE ANIMATION            */
+/* ========================================= */
+
+.spotify-large-title.marquee,
+.spotify-large-artist.marquee {
+  text-overflow: clip; /* allow child span to extend past ellipsis */
+}
+
+.spotify-large-title.marquee span,
+.spotify-large-artist.marquee span {
+  display: inline-block;
+  animation: marquee-scroll 12s linear infinite;
+  padding-right: 50px; /* spacing before it repeats */
+}
+
+@keyframes marquee-scroll {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+/* ========================================= */
+/*             ANALOG CLOCK WIDGET          */
+/* ========================================= */
+
+.analog-clock-body {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: relative;
+  -webkit-app-region: drag;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  transition: background 0.3s ease;
+}
+
+.analog-clock-body .widget-overlay-controls.center-top {
+  opacity: 0;
+}
+.analog-clock-body:hover .widget-overlay-controls.center-top {
+  opacity: 1;
+}
+
+.clock-face {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: 50%;
+}
+
+.clock-number {
+  position: absolute;
+  font-family: 'Oswald', 'Impact', sans-serif;
+  font-weight: 700;
+  font-size: 70px; /* Reduced to fit perfectly */
+  line-height: 0.8;
+  letter-spacing: -2px;
+  transform: translate(-50%, -50%);
+  opacity: 0.8;
+  z-index: 1;
+}
+.clock-number.num-12 { top: 20%; left: 50%; }
+.clock-number.num-3 { top: 50%; left: 80%; }
+.clock-number.num-06 { top: 80%; left: 50%; }
+.clock-number.num-9 { top: 50%; left: 20%; }
+
+.clock-hand {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform-origin: bottom center;
+  border-radius: 20px;
+  transition: transform 0.1s cubic-bezier(0.4, 2.08, 0.55, 0.44);
+}
+
+.hour-hand {
+  width: 20px;
+  height: 25%;
+  margin-left: -10px;
+  z-index: 2;
+}
+
+.minute-hand {
+  width: 24px;
+  height: 40%;
+  margin-left: -12px;
+  border: 4px solid;
+  background: transparent;
+  box-sizing: border-box;
+  z-index: 3;
+}
+
+.second-hand {
+  width: 2px;
+  height: 45%;
+  bottom: 50%;
+  margin-left: -1px;
+  background-color: #ff3b30;
+  z-index: 4;
+  transform-origin: bottom center;
+}
+
+.second-hand::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 30px; /* Counterweight */
+  background-color: #ff3b30;
+}
+
+.second-hand-dot {
+  position: absolute;
+  bottom: 0; /* Center of rotation */
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transform: translate(-50%, 50%);
+  background-color: #ff3b30;
+  border: 2px solid #1e1e1e;
+}
+
+/* Overlay controls fix for new widgets */
+.widget-overlay-controls.center-top {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 100;
+  -webkit-app-region: no-drag;
+  pointer-events: auto;
+}
+
+/* ========================================= */
+/*             PHOTO FRAME WIDGET           */
+/* ========================================= */
+
+.photo-frame-container {
+  width: 100%;
+  height: 100%;
+  -webkit-app-region: no-drag;
+}
+
+.photo-frame-body {
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  border: 8px solid white;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  overflow: hidden;
+  -webkit-app-region: drag;
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* Invisible handle to allow OS resize over the drag region */
+.photo-frame-body::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border: 8px solid transparent;
+  pointer-events: none; /* Let clicks pass, but the edge might still trigger OS resize if no-drag */
+  -webkit-app-region: no-drag;
+  z-index: 50;
+}
+
+.photo-frame-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  display: block;
+}
+
+.photo-frame-body .widget-overlay-controls.center-top {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.photo-frame-body:hover .widget-overlay-controls.center-top {
+  opacity: 1;
+}
+
+/* ========================================= */
+/*             SCREEN TIME WIDGET           */
+/* ========================================= */
+
+.screen-time-body {
+  width: 100%;
+  height: 100%;
+  background: #f0f0f2;
+  border-radius: 36px;
+  position: relative;
+  -webkit-app-region: drag;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.screen-time-body .widget-overlay-controls.center-top {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.screen-time-body:hover .widget-overlay-controls.center-top {
+  opacity: 1;
+}
+
+.screen-time-text {
+  position: absolute;
+  bottom: 25px;
+  left: 25px;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  font-size: 26px;
+  letter-spacing: 2px;
+  color: #1e1e1e;
+}
+.screen-time-text span {
+  font-size: 16px;
+  letter-spacing: 1px;
+}

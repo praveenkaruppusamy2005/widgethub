@@ -1,0 +1,66 @@
+{
+  "name": "widgethub",
+  "version": "0.0.1",
+  "description": "",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "start:dev": "cross-env ELECTRON_START_URL=http://localhost:3000 electron .",
+    "dev": "concurrently \"npm:renderer\" \"npm:start:dev\"",
+    "renderer": "cd renderer && vite",
+    "build:react": "cd renderer && vite build",
+    "build": "npm run build:react && electron-builder build --win",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "build": {
+    "appId": "com.widgethub.app",
+    "productName": "Widget Hub",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "src/**/*"
+    ],
+    "win": {
+      "icon": "renderer/src/assets/app.ico",
+      "target": [
+        "appx",
+        "nsis"
+      ]
+    },
+    "appx": {
+      "identityName": "WidgetHub",
+      "publisher": "CN=Gliph ui",
+      "publisherDisplayName": "Gliph UI"
+    }
+  },
+  "keywords": [
+    "electron",
+    "react",
+    "vite",
+    "desktop",
+    "app"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "^7.3.6",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.2.0",
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "electron": "^39.2.4",
+    "electron-builder": "^26.8.1",
+    "vite": "^7.2.7"
+  },
+  "bin": {
+    "electronboilerplate": "./bin/create-electron-vite-app.cjs"
+  }
+}
